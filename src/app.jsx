@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./app.module.css";
 import SearcHeader from "./components/search_header/search_header";
 import VideoDetail from "./components/video_detail/video_detail";
@@ -13,22 +13,26 @@ function App({ youtube }) {
     setSelectedVideo(video);
   };
 
-  const search = (query) => {
-    setSelectedVideo(null);
-    youtube
-      .search(query) //
-      .then((videos) => {
-        setVideos(videos);
-        setSelectedVideo(null);
-      });
-  };
+  // useCallback도 dependency를 빈 배열로 지정하면 한번만 호출됨
+  const search = useCallback(
+    (query) => {
+      setSelectedVideo(null);
+      youtube
+        .search(query) //
+        .then((videos) => {
+          setVideos(videos);
+          setSelectedVideo(null);
+        });
+    },
+    [youtube]
+  );
 
   // 빈 배열을 전달면 처음 mount 될 때만 호출 됨
   useEffect(() => {
     youtube
       .mostPopular() //
       .then((videos) => setVideos(videos));
-  }, []);
+  }, [youtube]);
 
   return (
     <div className={styles.app}>

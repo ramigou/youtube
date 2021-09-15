@@ -1,7 +1,10 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import styles from "./search_header.module.css";
 
-const SearcHeader = ({ onSearch }) => {
+// App 컴포넌트가 함수형이기때문에 멤버 변수가 계속 새로 생성되면서 props가 업데이트 됨
+// 그래서 memo를 사용해도 계속해서 render가 되는 상황
+// App에서 useCallback 사용으로 해결
+const SearcHeader = memo(({ onSearch }) => {
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
@@ -39,6 +42,6 @@ const SearcHeader = ({ onSearch }) => {
       </button>
     </header>
   );
-};
+});
 
 export default SearcHeader;
