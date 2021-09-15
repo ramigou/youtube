@@ -14,6 +14,8 @@ function App({ youtube }) {
   };
 
   // useCallback도 dependency를 빈 배열로 지정하면 한번만 호출됨
+  // props 전달로 자식 컴포넌트가 re-render되는 경우에만 사용해야 함
+  // 잘못 사용하면 메모리 낭비가 발생
   const search = useCallback(
     (query) => {
       setSelectedVideo(null);
