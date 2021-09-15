@@ -3,6 +3,7 @@ import "./app.css";
 import VideoList from "./components/video_list/video_list";
 
 function App() {
+  const apikey = process.env.REACT_APP_Youtube_API_KEY;
   const [videos, setVideos] = useState([]);
 
   // 빈 배열을 전달면 처음 mount 될 때만 호출 됨
@@ -16,7 +17,7 @@ function App() {
     // 작업하기 편하도록 json 형태로 변환하기
     // API로 받아온 데이터 중 items에 담긴 데이터들을 setVideos로 업데이트
     fetch(
-      "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&key=AIzaSyB36WvTN65B_vZZ_MriotBteRulJOpRn9Y",
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=30&key=${apikey}`,
       requestOptions
     )
       .then((response) => response.json())
