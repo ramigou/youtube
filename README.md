@@ -7,5 +7,6 @@
 * 기능별로 component를 분리하였고, PostCSS를 사용했습니다.
 ## 2. Live Demo
 해당 페이지로 이동하시면 프로젝트 결과물을 확인하실 수 있습니다.   
+*(Chrome browser에 최적화되어 있습니다.)*
 > ### Netlify 
 https://daseultube.netlify.app
